@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnGov - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-xl font-bold text-gray-800">VulnGov</h1>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-700 mr-4">Welcome, <%= user.username %></span>
+                    <a href="/auth/logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Ministry Services</h2>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <!-- Health Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Health Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage health records and patient information</p>
+                        <div class="mt-4">
+                            <a href="/api/health/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Education Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access student records and educational data</p>
+                        <div class="mt-4">
+                            <a href="/api/education/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transport Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Transport Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage vehicle records and transport data</p>
+                        <div class="mt-4">
+                            <a href="/api/transport/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Interior Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access facility records and security data</p>
+                        <div class="mt-4">
+                            <a href="/api/interior/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Petroleum Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Petroleum Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage well records and production data</p>
+                        <div class="mt-4">
+                            <a href="/api/petroleum/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Energy Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Energy Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access power plant records and energy data</p>
+                        <div class="mt-4">
+                            <a href="/api/energy/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Information Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage news items and media data</p>
+                        <div class="mt-4">
+                            <a href="/api/information/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agriculture Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Agriculture Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage farm records and agricultural data</p>
+                        <div class="mt-4">
+                            <a href="/api/agriculture/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-lime-600 hover:bg-lime-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commerce Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Commerce Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access business records and trade data</p>
+                        <div class="mt-4">
+                            <a href="/api/commerce/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defense Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Defense Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage security records and defense data</p>
+                        <div class="mt-4">
+                            <a href="/api/defense/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environment Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Environment Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access environmental records and impact data</p>
+                        <div class="mt-4">
+                            <a href="/api/environment/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finance Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Finance Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage financial records and budget data</p>
+                        <div class="mt-4">
+                            <a href="/api/finance/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foreign Affairs Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Foreign Affairs Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access diplomatic records and foreign relations</p>
+                        <div class="mt-4">
+                            <a href="/api/foreign/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Justice Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Justice Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage legal records and case data</p>
+                        <div class="mt-4">
+                            <a href="/api/justice/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Labor Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Labor Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access employment records and labor data</p>
+                        <div class="mt-4">
+                            <a href="/api/labor/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Science Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Science Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Manage research records and scientific data</p>
+                        <div class="mt-4">
+                            <a href="/api/science/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tourism Ministry -->
+                <div class="bg-white overflow-hidden shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900">Tourism Ministry</h3>
+                        <p class="mt-1 text-sm text-gray-500">Access tourism records and promotion data</p>
+                        <div class="mt-4">
+                            <a href="/api/tourism/records" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
+                                View Records
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 
