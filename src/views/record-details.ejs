@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnGov - <%= ministry %> Record Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <h1 class="text-xl font-bold text-gray-800">VulnGov</h1>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-700 mr-4">Welcome, <%= user.username %></span>
+                    <a href="/auth/logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="px-4 py-6 sm:px-0">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900"><%= ministry %> Record Details</h2>
+                <div class="flex space-x-4">
+                    <a href="/api/<%= ministry.toLowerCase() %>/records" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium">Back to Records</a>
+                    <a href="/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Record Information -->
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Basic Information -->
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Basic Information</h3>
+                            <dl class="space-y-4">
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Record ID</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.id %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Name</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.name %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Status</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.status %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Details</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.details %></dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                        <!-- Sensitive Information (IDOR Vulnerability) -->
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Sensitive Information</h3>
+                            <dl class="space-y-4">
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Internal ID</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.internal_id || 'INT-' + record.id %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Access Level</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.access_level || 'RESTRICTED' %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Last Modified</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.last_modified || new Date().toISOString() %></dd>
+                                </div>
+                                <div>
+                                    <dt class="text-sm font-medium text-gray-500">Modified By</dt>
+                                    <dd class="mt-1 text-sm text-gray-900"><%= record.modified_by || 'admin' %></dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- File Upload (File Upload Vulnerability) -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-sm font-medium text-gray-900 mb-2">Upload Document</h4>
+                            <form action="/api/<%= ministry.toLowerCase() %>/upload" method="POST" enctype="multipart/form-data">
+                                <div class="flex items-center space-x-2">
+                                    <input type="file" name="file" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">Upload</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Command Execution (Command Injection Vulnerability) -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-sm font-medium text-gray-900 mb-2">Run System Command</h4>
+                            <form id="commandForm" class="flex items-center space-x-2">
+                                <input type="text" name="command" placeholder="Enter command..." class="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium">Run</button>
+                            </form>
+                        </div>
+
+                        <!-- View Logs (Sensitive Data Exposure) -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="text-sm font-medium text-gray-900 mb-2">System Logs</h4>
+                            <button onclick="viewLogs()" class="w-full bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium">View Logs</button>
+                        </div>
+                    </div>
+
+                    <!-- Command Output -->
+                    <div id="commandOutput" class="mt-4 hidden">
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Command Output</h4>
+                        <pre class="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto"></pre>
+                    </div>
+
+                    <!-- Logs Display -->
+                    <div id="logsDisplay" class="mt-4 hidden">
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">System Logs</h4>
+                        <div class="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+                            <pre id="logsContent"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Command execution (Command Injection Vulnerability)
+        document.getElementById('commandForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const command = this.command.value;
+            const ministry = '<%= ministry.toLowerCase() %>';
+            
+            try {
+                const response = await fetch(`/api/${ministry}/run`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ command })
+                });
+                const data = await response.json();
+                
+                const outputDiv = document.getElementById('commandOutput');
+                outputDiv.classList.remove('hidden');
+                outputDiv.querySelector('pre').textContent = data.output || data.error;
+            } catch (error) {
+                console.error('Error executing command:', error);
+            }
+        });
+
+        // View logs (Sensitive Data Exposure)
+        async function viewLogs() {
+            const ministry = '<%= ministry.toLowerCase() %>';
+            
+            try {
+                const response = await fetch(`/api/${ministry}/logs`);
+                const logs = await response.json();
+                
+                const logsDisplay = document.getElementById('logsDisplay');
+                const logsContent = document.getElementById('logsContent');
+                
+                logsDisplay.classList.remove('hidden');
+                logsContent.textContent = logs.map(log => 
+                    `[${log.timestamp}] ${log.level}: ${log.message}`
+                ).join('\n');
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
