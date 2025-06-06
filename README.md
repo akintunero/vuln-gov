@@ -1,263 +1,133 @@
-# VulnGov - Government Vulnerability Testing Platform
+# VulnGov CTF Challenge
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Security](https://img.shields.io/badge/Security-Research-blue)](https://github.com/akintunero/vuln-gov/security)
+A government vulnerability management system containing various security challenges. Your mission is to identify and exploit the vulnerabilities while learning about secure coding practices.
 
-A deliberately vulnerable government records management system for security testing and training. This project simulates a government portal with various security vulnerabilities that can be exploited to learn about web security concepts.
+## ⚠️ IMPORTANT WARNING
 
-## ⚠️ Security Notice
+**DO NOT RUN THIS APPLICATION ON YOUR MAIN SYSTEM OR PRODUCTION ENVIRONMENT**
 
-This application is **intentionally vulnerable** and should **NEVER** be deployed in a production environment. It is designed for:
+This project contains intentionally vulnerable code that could be dangerous if run in an unsecured environment. Always run this application in:
 
-* Security research and education
-* Penetration testing practice
-* Learning about web application security
-* Understanding common vulnerabilities
+1. **Docker Container**
+   ```bash
+   docker build -t vulngov .
+   docker run -p 3000:3000 vulngov
+   ```
 
-## 🎯 Project Purpose
+2. **Virtual Machine**
+   - Use VirtualBox, VMware, or similar
+   - Isolate the VM from your main network
+   - Take regular snapshots
 
-VulnGov is an open-source project that simulates a government portal with various security vulnerabilities. It's designed to help security researchers, developers, and students learn about:
+3. **Cloud Sandbox**
+   - Use a disposable cloud instance
+   - Configure strict network isolation
+   - Delete the instance after use
 
-* Common web vulnerabilities
-* Security best practices
-* Penetration testing techniques
-* Secure coding principles
+4. **Local Sandbox**
+   - Use tools like Docker Desktop
+   - Configure network isolation
+   - Use a dedicated testing user
 
-## 🚀 Getting Started
+**Security Precautions:**
+- Never run as root/administrator
+- Use a dedicated testing network
+- Don't store sensitive data in the environment
+- Regularly clean up and reset the environment
+- Monitor system resources and network traffic
+- Keep the environment isolated from production systems
 
-### Prerequisites
+## Challenge Overview
 
-* Node.js (v18 or higher)
-* npm (v8 or higher)
-* Docker (optional)
-* MySQL (v8.0 or higher)
+VulnGov is a simulated government system that contains various security challenges. Your task is to:
 
-### Installation
+1. Identify the vulnerabilities
+2. Understand how they can be exploited
+3. Develop secure fixes
+4. Document your findings
 
-1. Clone the repository:
-```bash
-git clone https://github.com/akintunero/vuln-gov.git
-cd vuln-gov
+## Project Structure
+
 ```
-
-2. Install dependencies:
-```bash
-npm install
+vulngov/
+├── src/
+│   ├── ministries/           # Ministry-specific modules
+│   ├── auth/                # Authentication and authorization
+│   ├── middleware/          # Express middleware
+│   ├── views/              # EJS templates
+│   └── routes.js           # Main routing
+├── database/               # Database scripts
+├── tests/                 # Test files
+└── config/               # Configuration files
 ```
-
-3. Configure environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your desired configuration
-```
-
-4. Start the application:
-```bash
-# Using npm
-npm start
-
-# Using Docker
-docker-compose up --build
-```
-
-The application will be available at `http://localhost:3001`
-
-## 🎮 Features
-
-### Core Services
-
-1. **Document Services**
-   * Secure document upload
-   * Document management
-   * File type validation
-   * Download capabilities
-
-2. **User Management**
-   * Role-based access control
-   * Ministry-specific permissions
-   * User authentication
-   * Session management
-
-3. **Record Management**
-   * Ministry-specific records
-   * Classification levels
-   * Audit logging
-   * Access control
-
-4. **Security Features**
-   * Intentionally vulnerable endpoints
-   * CTF-style challenges
-   * Hidden flags
-   * Multiple attack vectors
-
-## 🔍 Vulnerability Categories
-
-1. **SQL Injection**
-   - Location: Search functionality in each ministry
-   - Goal: Extract sensitive data from the database
-   - Hint: Try using SQL comments and UNION statements
-
-2. **IDOR (Insecure Direct Object Reference)**
-   - Location: Record access endpoints
-   - Goal: Access records from other ministries
-   - Hint: Look for predictable ID patterns
-
-3. **File Upload Vulnerabilities**
-   - Location: Document upload functionality
-   - Goal: Upload and execute malicious files
-   - Hint: Check file type validation
-
-4. **Command Injection**
-   - Location: System command execution endpoints
-   - Goal: Execute arbitrary system commands
-   - Hint: Look for script execution points
-
-5. **Sensitive Data Exposure**
-   - Location: API responses and error messages
-   - Goal: Find exposed sensitive information
-   - Hint: Check response headers and error messages
-
-6. **Authentication Bypass**
-   - Location: Authentication endpoints
-   - Goal: Access restricted resources
-   - Hint: Look for token validation issues
-
-## 🎓 Learning Resources
-
-* [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-* [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
-* [PortSwigger Web Security Academy](https://portswigger.net/web-security)
-* [TryHackMe](https://tryhackme.com/)
-* [HackTheBox](https://www.hackthebox.com/)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Security Contributions
-
-If you discover any real vulnerabilities (not intentionally implemented ones), please follow our [Responsible Disclosure Policy](SECURITY.md).
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⚖️ Legal Disclaimer
-
-This project is for educational purposes only. The authors are not responsible for any misuse or damage caused by this program. Users are responsible for ensuring they have permission to test any systems they deploy this application on.
-
-## 👨‍💻 Author
-
-**Olúmáyòwá Akinkuehinmi**
-- GitHub: [@akintunero](https://github.com/akintunero)
-
-## 🙏 Acknowledgments
-
-* OWASP for security guidelines
-* The open-source community
-* All contributors and security researchers
-
-## 📧 Contact
-
-For questions, suggestions, or security concerns, please open an issue in the GitHub repository.
-
----
-
-**Note**: This is a deliberately vulnerable application. Do not use it in production or expose it to the internet without proper security measures.
 
 ## Challenge Categories
 
-### 1. SQL Injection
-- Location: Search functionality in each ministry
-- Goal: Extract sensitive data from the database
-- Hint: Try using SQL comments and UNION statements
+The system contains various types of vulnerabilities. Your mission is to find them all!
 
-### 2. IDOR (Insecure Direct Object Reference)
-- Location: Record access endpoints
-- Goal: Access records from other ministries
-- Hint: Look for predictable ID patterns
+### Web Security Challenges
+- Client-side vulnerabilities
+- Server-side vulnerabilities
+- Authentication bypasses
+- Authorization issues
+- Data exposure
 
-### 3. File Upload Vulnerabilities
-- Location: Document upload functionality
-- Goal: Upload and execute malicious files
-- Hint: Check file type validation
+### System Security Challenges
+- Command execution
+- File system access
+- Database manipulation
+- Network security
+- Configuration issues
 
-### 4. Command Injection
-- Location: System command execution endpoints
-- Goal: Execute arbitrary system commands
-- Hint: Look for script execution points
+## Getting Started
 
-### 5. Sensitive Data Exposure
-- Location: API responses and error messages
-- Goal: Find exposed sensitive information
-- Hint: Check response headers and error messages
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables:
+   ```
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=your_password
+   DB_NAME=vulngov
+   JWT_SECRET=your_secret
+   ```
+4. Set up the database:
+   ```sql
+   CREATE DATABASE vulngov;
+   USE vulngov;
+   -- Run the SQL scripts in the database/ directory
+   ```
+5. Run the application: `npm start`
 
-### 6. Authentication Bypass
-- Location: Authentication endpoints
-- Goal: Access restricted resources
-- Hint: Look for token validation issues
+## Challenge Objectives
 
-## Flag Locations
+1. Identify all vulnerabilities in the system
+2. Document each vulnerability with:
+   - Type of vulnerability
+   - Location in the code
+   - Steps to reproduce
+   - Potential impact
+   - Secure fix
 
-Each ministry has multiple flags to discover:
+3. Develop secure fixes for each vulnerability
+4. Create a comprehensive security report
 
-1. Primary Flag
-   - Located in the main record data
-   - Format: `FLAG{ministry_flag_01}`
+## Tools You Might Need
 
-2. Backup Flag
-   - Located in backup/archive data
-   - Format: `FLAG{ministry_backup_01}`
+- Web browser with developer tools
+- Network analysis tools
+- Database management tools
+- Security testing tools
+- Code analysis tools
 
-3. Internal Flag
-   - Requires deeper system access
-   - Format: `FLAG{ministry_internal_01}`
+## Development
 
-## Ministry-Specific Challenges
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
-### Health Ministry
-- Focus: Medical record access
-- Special Challenge: Patient data exposure
+## Security
 
-### Education Ministry
-- Focus: Student records
-- Special Challenge: Grade manipulation
+This project contains intentionally vulnerable code for educational purposes. Do not deploy this in a production environment. See [SECURITY.md](SECURITY.md) for details.
 
-### Transport Ministry
-- Focus: Vehicle registration
-- Special Challenge: License modification
+## License
 
-### Interior Ministry
-- Focus: Security clearances
-- Special Challenge: Access level escalation
-
-### Petroleum Ministry
-- Focus: Resource management
-- Special Challenge: Production data access
-
-### Energy Ministry
-- Focus: Power grid data
-- Special Challenge: Infrastructure access
-
-### Information Ministry
-- Focus: Public records
-- Special Challenge: Media control
-
-### Defense Ministry
-- Focus: Military operations
-- Special Challenge: Classified data access
-
-## Security Notice
-
-This application is deliberately vulnerable and should only be used in controlled environments for security testing and training purposes. Do not deploy in production or expose to the internet.
-
-## Contributing
-
-Feel free to submit issues and enhancement requests! 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
