@@ -81,9 +81,37 @@ The system contains various types of vulnerabilities. Your mission is to find th
 
 ## Getting Started
 
+### Option 1: Docker (Recommended)
+The easiest way to get started is using Docker:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/vulngov.git
+cd vulngov
+
+# Build and run with Docker
+docker build -t vulngov .
+docker run -p 3000:3000 vulngov
+```
+
+The application will be available at `http://localhost:3000`
+
+### Option 2: Manual Setup
+If you prefer to set up manually:
+
 1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up environment variables:
+   ```bash
+   git clone https://github.com/yourusername/vulngov.git
+   cd vulngov
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables
+   Create a `.env` file in the root directory with:
    ```
    DB_HOST=localhost
    DB_USER=root
@@ -91,13 +119,20 @@ The system contains various types of vulnerabilities. Your mission is to find th
    DB_NAME=vulngov
    JWT_SECRET=your_secret
    ```
-4. Set up the database:
+
+4. Set up the database
    ```sql
    CREATE DATABASE vulngov;
    USE vulngov;
    -- Run the SQL scripts in the database/ directory
    ```
-5. Run the application: `npm start`
+
+5. Run the application
+   ```bash
+   npm start
+   ```
+
+The application will be available at `http://localhost:3000`
 
 ## Challenge Objectives
 
