@@ -157,7 +157,6 @@ This project is for educational purposes only. The authors are not responsible f
 
 **Olúmáyòwá Akinkuehinmi**
 - GitHub: [@akintunero](https://github.com/akintunero)
-- LinkedIn: [Olúmáyòwá Akinkuehinmi](https://linkedin.com/in/akintunero)
 
 ## 🙏 Acknowledgments
 
