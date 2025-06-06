@@ -86,7 +86,7 @@ The easiest way to get started is using Docker:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vulngov.git
+git clone https://github.com/akintunero/vulngov.git
 cd vulngov
 
 # Build and run with Docker
@@ -101,7 +101,7 @@ If you prefer to set up manually:
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/vulngov.git
+   git clone https://github.com/akintunero/vulngov.git
    cd vulngov
    ```
 
